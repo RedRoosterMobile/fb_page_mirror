@@ -23,7 +23,7 @@ $url = urldecode($_GET['url']);
   curl_setopt($curl, CURLOPT_ENCODING, 'gzip,deflate');
   curl_setopt($curl, CURLOPT_AUTOREFERER, true);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($curl, CURLOPT_TIMEOUT, 100000);
+  curl_setopt($curl, CURLOPT_TIMEOUT, 100);
  
   $result = curl_exec($curl); // execute the curl command
   
