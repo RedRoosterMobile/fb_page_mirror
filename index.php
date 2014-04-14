@@ -29,9 +29,9 @@
               console.log('ass');
               $('.media-body a[href^="http://"]').click(function(event){
                 event.preventDefault();
-                console.log($(event.target).parent()[0].href);
-                console.log(this.href);
-                $href=this.href;
+                //console.log($(event.target).parent()[0].href);
+                //console.log(this.href);
+                $href = this.href;
                 $.get( 'crossdomain.php',{url: $href}, function( data ) {
                   $.fancybox.open( {href : data, title : null})
                 });
@@ -66,10 +66,9 @@
 <div class="container">
 
 <?php
-//THEN CALL THE FUNCTION        
-
-//http://www.facebook.com/feeds/page.php?id=623586034357850&format=rss20
-fb_parse_feed('623586034357850', 10);
+    //THEN CALL THE FUNCTION        
+    // example: http://www.facebook.com/feeds/page.php?id=623586034357850&format=rss20
+    fb_parse_feed('623586034357850', 10);
 ?> 
 </div>
 
@@ -116,7 +115,6 @@ function fb_parse_feed( $page_id, $no = 5 ) {
   $out = ''; 
   $i = 1;
   foreach( $xml->channel->item as $item ) {
-// <img class="img-rounded" src="http://photos-a.ak.fbcdn.net/hphotos-ak-prn1/t1.0-0/10177521_631039060279214_2025727403000335029_s.jpg" alt="">
     $desc= str_replace('<img class="img" ', '<img class="img-rounded" style="margin-right:5px;"', $item->description);
     $out .='<div class="jumbotron media">';
     $out .= '<div class="entry">';
@@ -124,30 +122,18 @@ function fb_parse_feed( $page_id, $no = 5 ) {
     $out .= '<div class="badge">' . date("d.m.Y - H:i:s",strtotime($item->pubDate)) . ' von '. $item->author .'</div><br/><br/>';
     $out .= '<div class="media-body">' . $desc . '</div></div>';
     $out .='</div>';
-    /*
-    $out.='<div class="panel panel-default">';
-    $out.='  <div class="panel-heading"><a href="' . get_page_url($item->link) . '">' . $item->title . '</a></h3><br/></div>';
-    $out.='  <div class="panel-body">';
-    $out .= '<div class="media-body">' . $desc . '</div></div>';
-    $out.='  </div>';
-    $out.='</div>';
-*/
 
     if( $i == $no ) break;
     $i++;
   }
-  
   echo $out;
-
-
 }
+
 function get_page_url($link) {
   #s$link='https://www.facebook.com/Dr.MichaelArndt/photos/a.623879234328530.1073741827.623586034357850/626118157437971/?type=1'
-  $parts=explode('/', ''.$link);
-  $page_alias=$parts[3];
+  $parts = explode('/', ''.$link);
+  $page_alias = $parts[3];
   return "https://www.facebook.com/$page_alias";
 }
-
-
 
 ?>

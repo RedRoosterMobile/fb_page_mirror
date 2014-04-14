@@ -1,6 +1,6 @@
 <?php
-$url = $_GET['url'];
-
+$url = urldecode($_GET['url']);
+#echo $url;
 #$url='http://www.facebook.com/Dr.MichaelArndt/photos/a.623879234328530.1073741827.623586034357850/631667260216394/?type=1&relevant_count=1';
 
   $url= str_replace('http:', 'https:', $url);  
@@ -23,15 +23,27 @@ $url = $_GET['url'];
   curl_setopt($curl, CURLOPT_ENCODING, 'gzip,deflate');
   curl_setopt($curl, CURLOPT_AUTOREFERER, true);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($curl, CURLOPT_TIMEOUT, 100);
+  curl_setopt($curl, CURLOPT_TIMEOUT, 100000);
  
   $result = curl_exec($curl); // execute the curl command
-  echo get_large_image($result);
-  #var_dump(get_large_image($result));
+  
+  header('Content-type: text/plain');
+  if ($result) {
+    echo get_large_image($result);
+  } else {
+    // curl not working in xamppp on windows.. no error msg whatsoever
+    $result = 'https://scontent-b.xx.fbcdn.net/hphotos-ash3/t1.0-9/p180x540/10177434_632082720174848_1989970656143966028_n.jpg';
+    echo result;
+  }
   curl_close($curl); // close the connection
   
+  /**
+   * This is the most vulnerable part for changes on facebook side
+   * @param html-String $html
+   * @return String 
+   */
   function get_large_image($html) {
-  	$start=strpos($html, 'id="fbPhotoImage" src="'); 
+        $start=strpos($html, 'id="fbPhotoImage" src="'); 
   	$parts=explode('"',substr($html, $start));
   	return $parts[3];
   }
