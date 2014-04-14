@@ -4,6 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
+        <?php include 'lib.controller.php'; ?>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Praxis Dr. Arndt</title>
@@ -26,7 +27,6 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
-              console.log('ass');
               $('.media-body a[href^="http://"]').click(function(event){
                 event.preventDefault();
                 //console.log($(event.target).parent()[0].href);
@@ -41,15 +41,25 @@
         </script> 
   </head>
   <body>
-<?php 
- include 'navigation.facebook.php';
-?>
-<div class="container">
-<?php
-include 'content.facebook.php';
-
-?>
-</div>
-
+    <?php include 'navigation.php'; ?>
+    <div class="container">
+        <?php 
+        switch(current_page()) {
+            case 'home': 
+                include 'content.facebook.php';
+                break;
+            case 'impressum':
+                include 'content.impressum.php';
+                break;
+            case 'kontakt':
+                include 'content.kontakt.php';
+                break;
+            default: 
+                include 'content.facebook.php';
+                break;
+        }
+            
+        ?>
+    </div>
   </body>
 </html>

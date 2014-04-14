@@ -28,7 +28,7 @@ $url = urldecode($_GET['url']);
   $result = curl_exec($curl); // execute the curl command
   
   header('Content-type: text/plain');
-  if ($result) {
+  if (isset($result)) {
     echo get_large_image($result);
   } else {
     // curl not working in xamppp on windows.. no error msg whatsoever

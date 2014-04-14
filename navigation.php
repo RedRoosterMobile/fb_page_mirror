@@ -21,8 +21,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Neuigkeiten</a></li>
-        <li><a href="#">Impressum</a></li>
+        <li <?php echo (current_page()=='home') ? 'class="active"':''; ?>><a href="index.php">Neuigkeiten</a></li>
+        <li <?php echo (current_page()=='impressum') ? 'class="active"':''; ?>><a href="index.php?page=impressum">Impressum</a></li>
+        <li <?php echo (current_page()=='kontakt') ? 'class="active"':''; ?>><a href="index.php?page=kontakt">Kontakt</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
