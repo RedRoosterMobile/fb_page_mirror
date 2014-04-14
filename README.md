@@ -7,4 +7,4 @@ This is meant to mirror the posts of a facebook page, circumventing the facebook
 
 We get the linked images via curl as well and display them in a fancybox.
 
-Layout is bootstrap edge.
+Layout is twitter-bootstrap edge.
