@@ -7,7 +7,7 @@
         <?php include 'lib.controller.php'; ?>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Praxis Dr. Arndt</title>
+        <title>Praxis Dr. Arndt - <?php echo ucfirst(current_page()); ?></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -27,7 +27,7 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
-              $('.media-body a[href^="http://"]').click(function(event){
+              $('.media-body a[href^="http://"]').click(function(event) {
                 event.preventDefault();
                 //console.log($(event.target).parent()[0].href);
                 //console.log(this.href);
@@ -44,6 +44,8 @@
     <?php include 'navigation.php'; ?>
     <div class="container">
         <?php 
+        // add your new pages here.. 
+        // @TODO: htaccess for this stuff
         switch(current_page()) {
             case 'home': 
                 include 'content.facebook.php';

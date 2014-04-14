@@ -1,7 +1,9 @@
+
+
 <?php
     //THEN CALL THE FUNCTION        
     // example: http://www.facebook.com/feeds/page.php?id=623586034357850&format=rss20
-    fb_parse_feed('623586034357850', 10);
+    fb_parse_feed('623586034357850', 100);
 ?> 
 
 <?php
